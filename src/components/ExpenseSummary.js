@@ -1,20 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import numeral from 'numeral';
 import selectExpenses from '../selectors/expenses';
 import selectExpensesTotal from '../selectors/expenses-total';
 
-export function ExpenseSummary(props) {
+export function ExpenseSummary({ expenseCount, expenseTotal }) {
+  const expenseWord = expenseCount === 1 ? 'expense' : 'expenses';
+  const formattedExpensesTotal = numeral(expenseTotal / 100).format('$0,0.00');
   return (
     <div>
-      {props.expenseCount > 1 ? (
-        <p>
-          Viewing {props.expenseCount} expenses totalling ${props.expenseTotal}
-        </p>
-      ) : (
-        <p>
-          Viewing {props.expenseCount} expense totalling ${props.expenseTotal}
-        </p>
-      )}
+      <h1>
+        Viewing {expenseCount} {expenseWord} totalling {formattedExpensesTotal}
+      </h1>
     </div>
   );
 }
