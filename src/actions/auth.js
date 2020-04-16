@@ -5,15 +5,15 @@ export const login = uid => ({
   uid
 });
 
-export const logout = () => ({
-  type: 'LOGOUT'
-});
-
 export const startLogin = () => {
   return () => {
     return firebase.auth().signInWithPopup(googleAuthProvider);
   };
 };
+
+export const logout = () => ({
+  type: 'LOGOUT'
+});
 
 export const startLogout = () => {
   return () => {
